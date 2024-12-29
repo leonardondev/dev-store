@@ -1,7 +1,8 @@
-import { api } from '@/data/api'
-import { Product } from '@/data/types/products'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { api } from '@/data/api'
+import { Product } from '@/data/types/products'
 
 async function getFeaturedProducts(): Promise<Product[]> {
   const response = await api('/products/featured', {
@@ -18,21 +19,21 @@ export default async function Home() {
   const [highlightedProduct, ...otherProducts] = await getFeaturedProducts()
 
   return (
-    <div className="grid sm:max-h-[816px] sm:grid-cols-6 md:grid-cols-9 grid-rows-9 sm:grid-rows-6 gap-6">
+    <div className="grid grid-rows-9 gap-6 sm:max-h-[816px] sm:grid-cols-6 sm:grid-rows-6 md:grid-cols-9">
       <Link
         href={`/product/${highlightedProduct.slug}`}
-        className="group relative col-span-3 row-span-3 sm:col-span-6 sm:row-span-6 rounded-lg bg-zinc-900 overflow-hidden aspect-square sm:aspect-video md:aspect-auto flex justify-center items-end"
+        className="group relative col-span-3 row-span-3 flex aspect-square items-end justify-center overflow-hidden rounded-lg bg-zinc-900 sm:col-span-6 sm:row-span-6 sm:aspect-video md:aspect-auto"
       >
         <Image
-          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           src={highlightedProduct.image}
           width={720}
           height={720}
           quality={100}
           alt=""
         />
-        <div className="absolute bottom-28 right-12 h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
-          <span className="text-sm truncate">{highlightedProduct.title}</span>
+        <div className="absolute bottom-28 left-4 right-12 flex h-12 items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5 sm:max-w-[280px]">
+          <span className="truncate text-sm">{highlightedProduct.title}</span>
           <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
             {highlightedProduct.price.toLocaleString('pr-BR', {
               style: 'currency',
@@ -47,19 +48,19 @@ export default async function Home() {
         return (
           <Link
             key={product.id}
-            href={`/products/${product.slug}`}
-            className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden"
+            href={`/product/${product.slug}`}
+            className="group relative col-span-3 row-span-3 overflow-hidden rounded-lg bg-zinc-900"
           >
             <Image
-              className="w-full h-full object-cover object-top aspect-square group-hover:scale-105 transition-transform duration-500"
+              className="aspect-square size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
               src={product.image}
               width={360}
               height={360}
               quality={100}
               alt=""
             />
-            <div className="absolute bottom-28 right-12 sm:bottom-10 sm:right-[4vw] lg:right-12 h-12 flex items-center justify-between gap-2 max-w-[280px] sm:w-3/4 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
-              <span className="text-sm truncate">{product.title}</span>
+            <div className="absolute bottom-28 left-4 right-12 flex h-12 items-center justify-between gap-2 rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5 sm:bottom-10 sm:right-[4vw] sm:w-3/4 sm:max-w-[280px] lg:right-12">
+              <span className="truncate text-sm">{product.title}</span>
               <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold">
                 {product.price.toLocaleString('pr-BR', {
                   style: 'currency',
