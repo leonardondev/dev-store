@@ -7,8 +7,13 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    fontFamily: {
-      sans: 'var(--font-inter)',
+    extend: {
+      fontFamily: {
+        sans: 'var(--font-inter)',
+      },
+      gridTemplateColumns: {
+        '1-lg': 'minmax(0, 1fr) 32rem',
+      },
     },
   },
   plugins: [],

@@ -15,7 +15,7 @@ async function getFeaturedProducts(): Promise<Product[]> {
   return featuredProducts
 }
 
-export default async function Home() {
+export default async function HomePage() {
   const [highlightedProduct, ...otherProducts] = await getFeaturedProducts()
 
   return (
@@ -27,8 +27,8 @@ export default async function Home() {
         <Image
           className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           src={highlightedProduct.image}
-          width={720}
-          height={720}
+          width={1024}
+          height={1024}
           quality={100}
           alt=""
         />
