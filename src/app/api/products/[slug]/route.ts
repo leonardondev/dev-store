@@ -4,8 +4,9 @@ import data from '@/app/api/data.json'
 
 export async function GET(
   _request: Request,
-  { params }: { params: { slug: string } },
+  props: { params: Promise<{ slug: string }> },
 ) {
+  const params = await props.params
   const slug = z.string().parse(params.slug)
   const product = data.products.find((product) => product.slug === slug)
 

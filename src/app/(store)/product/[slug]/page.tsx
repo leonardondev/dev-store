@@ -4,9 +4,9 @@ import { api } from '@/data/api'
 import { Product } from '@/data/types/products'
 
 interface ProductProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 async function getProduct(slug: string): Promise<Product> {
@@ -20,7 +20,8 @@ async function getProduct(slug: string): Promise<Product> {
   return product
 }
 
-export default async function ProductPage({ params }: ProductProps) {
+export default async function ProductPage(props: ProductProps) {
+  const params = await props.params
   const product = await getProduct(params.slug)
 
   return (
