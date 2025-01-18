@@ -14,6 +14,12 @@ export default {
       gridTemplateColumns: {
         '1-lg': 'minmax(0, 1fr) 32rem',
       },
+      aspectRatio: {
+        rectangle: '4 / 3',
+      },
+      inset: {
+        '1/10': '10%',
+      },
     },
   },
   plugins: [],
