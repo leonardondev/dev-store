@@ -22,7 +22,7 @@ async function searchProducts(query: string): Promise<Product[]> {
 }
 
 export default async function Search({ searchParams }: searchProps) {
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 500))
   const { q: query } = await searchParams
 
   if (!query) {
